@@ -41,7 +41,8 @@ export default function BnysPage() {
           <span><strong>60 students</strong> published annual intake*</span>
         </div>
       </PageHero>
-      <section className="section">
+      <nav className="section-nav container" aria-label="On this page"><a href="#overview">Overview</a><a href="#curriculum">Curriculum</a><a href="#questions">Questions</a><a href="/admissions">Admissions →</a></nav>
+      <section id="overview" className="section">
         <div className="container bnys-overview-grid">
           <div className="bnys-overview-image">
             <Image src="/images/bnys-natural-medicine.jpg" alt="Natural medicine preparations beside academic books" width={400} height={250} priority sizes="(max-width: 760px) 100vw, 400px" />
@@ -51,7 +52,7 @@ export default function BnysPage() {
             <h2>Science-informed, whole-person learning</h2>
             <div className="rich-text">
               <p>Students come to BNYS seeking careers aligned with natural healing and whole-person medicine. The programme connects medical-science foundations and natural-care disciplines with practical work, clinical observation and supervised application.</p>
-              <p>The legacy college website describes BNYS as a medical degree programme with professional registration. Equivalence, registration standing, the exact syllabus and eligibility must always be confirmed from the latest competent university or government documents.</p>
+              <p>For current admission eligibility, counselling requirements and professional registration information, contact our admissions team and request the applicable official documents.</p>
             </div>
           </div>
         </div>
@@ -71,7 +72,7 @@ export default function BnysPage() {
       </section>
       <section id="curriculum" className="section">
         <div className="container">
-          <div className="section-heading"><div><p className="eyebrow">Year-wise curriculum</p><h2>What students study</h2></div><p>Subject names below are migrated from the existing website and require comparison with the latest official syllabus.</p></div>
+          <div className="section-heading"><div><p className="eyebrow">Year-wise curriculum</p><h2>What students study</h2></div><p>An overview of the subjects studied throughout the programme. The university syllabus determines the final academic structure.</p></div>
           <div className="curriculum-list">
             {courseYears.map((year, index) => (
               <article key={year.year}>
@@ -87,7 +88,7 @@ export default function BnysPage() {
           <p className="micro-note">*All programme facts remain subject to verification against current official orders and syllabus documents.</p>
         </div>
       </section>
-      <section className="section section-soft">
+      <section id="questions" className="section section-soft">
         <div className="container faq-layout">
           <div><p className="eyebrow">BNYS questions</p><h2>Frequently asked questions</h2></div>
           <div className="faq-list">{faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>

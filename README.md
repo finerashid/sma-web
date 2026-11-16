@@ -9,8 +9,8 @@ on Vercel.
 
 - Next.js App Router with TypeScript and React Server Components
 - Responsive **Nature + Science** design system
-- Homepage, About, BNYS, Admissions, Academics, Campus, Gallery, News,
-  Disclosures, Contact and Privacy routes
+- Homepage, About, BNYS, Admissions, Campus, Gallery, Contact and Privacy routes
+- Legacy Academics route redirects to the BNYS curriculum; Updates remains directly accessible
 - Real SMA campus and training photographs migrated from the existing website
 - Automatic folder-driven gallery with keyboard-accessible lightbox
 - Admission/contact enquiry form with server-side validation and Resend delivery
@@ -134,7 +134,7 @@ and recommended conversions.
 - Update the route list in `app/sitemap.ts` when adding pages.
 - Legacy `.php` redirects live in `next.config.ts`.
 - Keep `NEXT_PUBLIC_SITE_URL` set to the production origin.
-- Place verified PDFs in `public/documents` and link them from Disclosures.
+- Place verified PDFs in `public/documents` and link them from Admissions or About.
 
 ## Quality checks
 

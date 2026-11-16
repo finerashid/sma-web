@@ -6,7 +6,6 @@ const routes = [
   "/about",
   "/bnys",
   "/admissions",
-  "/academics",
   "/campus",
   "/gallery",
   "/news",

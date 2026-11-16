@@ -35,12 +35,13 @@ export const siteConfig = {
 } as const;
 
 export const primaryNavigation = [
-  { href: "/bnys", label: "BNYS Programme" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/bnys", label: "BNYS Course" },
   { href: "/admissions", label: "Admissions" },
-  { href: "/academics", label: "Academics" },
   { href: "/campus", label: "Campus" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const courseYears = [
@@ -128,9 +129,9 @@ export const facilities = [
   {
     title: "Digital learning centre",
     description:
-      "The current website reports 40 internet-connected systems with printing, scanning and photocopying facilities.",
+      "Internet-connected systems with printing, scanning and photocopying facilities support independent study.",
     icon: "Monitor",
-    details: ["Published access: 9am–6pm", "Student and staff use", "Printing and scanning"],
+    details: ["Contact the college for access hours", "Student and staff use", "Printing and scanning"],
   },
   {
     title: "Sports and wellbeing",
@@ -227,3 +228,11 @@ export const clinicTherapies = [
 
 export const legacyContentNotice =
   "Programme facts and institutional claims must be checked against the latest university and admission orders before final publication.";
+
+// Approximate driving distances, rounded to the nearest kilometre.
+// Source routes and unrounded measurements: docs/TRAVEL-DISTANCES.md.
+export const campusConnections = [
+  { mode: "airport", name: "Raja Bhoj Airport", origin: "Raja Bhoj Airport Bhopal", distanceKm: 11 },
+  { mode: "bus", name: "Nadra Bus Stand", origin: "Nadra Bus Stand Bhopal", distanceKm: 20 },
+  { mode: "rail", name: "Bhopal Junction", origin: "Bhopal Junction Railway Station", distanceKm: 21 },
+] as const;

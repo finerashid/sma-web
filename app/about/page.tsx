@@ -15,7 +15,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About SMA"
-        title="Education for whole-person health"
+        title="Rooted in nature. Built around learning."
         description="SMA Medical College brings together naturopathy, yoga, foundational medical sciences and practical learning in Bhopal."
       />
       <section className="section leadership-section">
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Leadership messages"
             title="The voices shaping SMA’s direction"
-            description="Meet the college leadership and open each card to read their complete message."
+            description="Meet the people guiding education and student life at SMA."
           />
           <LeadershipMessages />
         </div>
@@ -49,7 +49,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="What guides us"
             title="Mission, vision and goals"
-            description="The original institutional statements have been professionally edited for clarity while preserving their central meaning."
+            description="Our shared purpose connects education, wellbeing and service to the community."
           />
           <div className="values-grid">
             <article><span>01</span><h3>Vision</h3><p>Health Naturally for All.</p></article>

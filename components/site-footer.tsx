@@ -29,7 +29,7 @@ export function SiteFooter() {
         <div>
           <h2 className="footer-heading">Explore</h2>
           <ul className="footer-links">
-            {primaryNavigation.slice(0, 5).map((item) => (
+            {primaryNavigation.map((item) => (
               <li key={item.href}>
                 <Link href={item.href}>{item.label}</Link>
               </li>
@@ -40,7 +40,6 @@ export function SiteFooter() {
         <div>
           <h2 className="footer-heading">Information</h2>
           <ul className="footer-links">
-            <li><Link href="/news">News &amp; notices</Link></li>
             <li><Link href="/contact">Contact</Link></li>
             <li><Link href="/privacy">Privacy policy</Link></li>
           </ul>

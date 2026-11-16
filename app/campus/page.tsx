@@ -16,7 +16,7 @@ const icons = { FlaskConical, Hospital, BookOpen, BedDouble, Monitor, Activity }
 export default function CampusPage() {
   return (
     <>
-      <PageHero eyebrow="Campus and facilities" title="Spaces designed for learning, practice and wellbeing" description="Explore the academic, clinical, residential and student-life environments currently presented by the college." />
+      <PageHero eyebrow="Campus and facilities" title="Room to learn. Space to belong." description="Discover classrooms, practical learning spaces and everyday life at our Bhopal campus." />
       <section className="section">
         <div className="container campus-feature-image">
           <Image src="/gallery/Campus/college-campus-entrance.webp" alt="SMA Medical College campus entrance area" width={1024} height={576} priority sizes="100vw" />
@@ -25,7 +25,7 @@ export default function CampusPage() {
       </section>
       <section className="section section-soft">
         <div className="container">
-          <div className="section-heading"><div><p className="eyebrow">Facilities</p><h2>Learning beyond lectures</h2></div><p>Facility descriptions are migrated from the current college website and should be confirmed before launch.</p></div>
+          <div className="section-heading"><div><p className="eyebrow">Facilities</p><h2>Learning beyond lectures</h2></div><p>From laboratory sessions to independent study, explore the spaces that support student learning.</p></div>
           <div className="facility-detail-grid">
             {facilities.map((facility) => {
               const Icon = icons[facility.icon as keyof typeof icons];
@@ -47,8 +47,8 @@ export default function CampusPage() {
         <div className="container clinic-section-grid">
           <div className="clinic-intro">
             <p className="eyebrow">Modern naturopathy clinic</p>
-            <h2>Therapies listed by the current college website</h2>
-            <p>These are presented as available facility information, not as claims of effectiveness or medical advice.</p>
+            <h2>Explore the naturopathy clinic</h2>
+            <p>Contact the college to learn about current services, appointments and clinical learning facilities.</p>
             <Image className="clinic-source-image" src="/images/naturopathy-clinic.jpg" alt="Natural preparations representing the college naturopathy clinic" width={580} height={290} sizes="(max-width: 900px) 100vw, 36vw" />
           </div>
           <ul className="therapy-tag-list">
@@ -58,7 +58,7 @@ export default function CampusPage() {
       </section>
       <section className="section section-soft public-yoga-section">
         <div className="container">
-          <div className="section-heading"><div><p className="eyebrow">Public wellness programme</p><h2>One-month public yoga classes</h2></div><p>The current website describes a general-public yoga programme. Batch dates and availability should be confirmed before visiting.</p></div>
+          <div className="section-heading"><div><p className="eyebrow">Public wellness programme</p><h2>One-month public yoga classes</h2></div><p>Interested in practising yoga with us? Contact the college for the next batch, timings and registration details.</p></div>
           <div className="public-yoga-grid">
             <Image src="/images/public-yoga-classes.jpg" alt="Outdoor public yoga class" width={580} height={326} sizes="(max-width: 900px) 100vw, 42vw" />
             <div className="programme-detail-grid">
