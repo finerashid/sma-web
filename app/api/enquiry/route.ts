@@ -45,6 +45,10 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Invalid form submission." }, { status: 400 });
   }
 
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return NextResponse.json({ message: "Invalid form submission." }, { status: 400 });
+  }
+
   if (clean(body.company, 100)) {
     return NextResponse.json({ message: "Thank you. Your enquiry has been received." });
   }
@@ -62,7 +66,6 @@ export async function POST(request: Request) {
     enquiry.name.length < 2 ||
     !isValidPhone(enquiry.phone) ||
     !isValidEmail(enquiry.email) ||
-    enquiry.message.length < 10 ||
     body.consent !== "yes"
   ) {
     return NextResponse.json(

@@ -49,17 +49,13 @@ export function EnquiryForm({ source = "website" }: { source?: string }) {
           <input name="phone" type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+() -]{8,18}" required />
         </label>
         <label>
-          Email address
+          Email address (optional)
           <input name="email" type="email" autoComplete="email" maxLength={120} />
-        </label>
-        <label>
-          City / State
-          <input name="location" type="text" autoComplete="address-level1" maxLength={100} />
         </label>
       </div>
       <label>
-        What would you like to know?
-        <textarea name="message" rows={5} minLength={10} maxLength={1200} required />
+        Your question (optional)
+        <textarea name="message" rows={5} maxLength={1200} />
       </label>
       <label className="honeypot" aria-hidden="true">
         Leave this field blank
