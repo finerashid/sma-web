@@ -9,7 +9,7 @@ import { getGalleryAlbums } from "@/lib/gallery";
 import { createMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
-export const metadata = createMetadata({ title: "BNYS College in Bhopal", description: siteConfig.description, path: "/" });
+export const metadata = createMetadata({ title: "BNYS College in Bhopal, MP", description: siteConfig.description, path: "/" });
 
 export default function Home() {
   const previews = getGalleryAlbums().flatMap(album => {
@@ -22,11 +22,11 @@ export default function Home() {
       <div className="container home-hero-grid">
         <div className="home-hero-copy">
           <p className="eyebrow">SMA Medical College · Bhopal</p>
-          <h1>Rooted in nature.<br /><em>Inspired by science.</em></h1>
-          <p className="hero-lead">Your future in Naturopathy &amp; Yogic Sciences starts here. Discover a learning experience shaped by knowledge, practice and a closer connection to nature.</p>
+          <h1>Study BNYS in Bhopal.<br /><em>Rooted in nature.</em></h1>
+          <p className="hero-lead">Discover the Bachelor of Naturopathy and Yogic Sciences at SMA Medical College, Madhya Pradesh. A learning experience shaped by science, yoga and clinical practice.</p>
           <div className="button-row">
             <Link className="button button-primary" href="/admissions#enquiry" data-analytics="click_apply_hero">Apply now <ArrowRight aria-hidden="true" /></Link>
-            <Link className="text-link" href="/bnys">Discover BNYS <ArrowRight aria-hidden="true" /></Link>
+            <Link className="text-link" href="/bnys">Explore the BNYS course <ArrowRight aria-hidden="true" /></Link>
           </div>
           <p className="hero-session"><span /> Your BNYS journey · {siteConfig.admissionsYear}</p>
         </div>
@@ -40,7 +40,7 @@ export default function Home() {
       <div><strong>Bhopal</strong><span>Airport Road campus</span></div>
     </div></section>
     <section className="section experience-section"><div className="container">
-      <SectionHeading eyebrow="The SMA experience" title="Knowledge grows through practice." description="Build understanding in the classroom. Put it into perspective in the laboratory, yoga hall and clinical setting." />
+      <SectionHeading eyebrow="The SMA experience" title="Naturopathy and yoga education in Central India." description="At our Bhopal campus, build understanding in the classroom and put it into practice in the laboratory, yoga hall and clinical setting." />
       <div className="pillar-grid">
         <article className="pillar-card"><span className="pillar-number">01 / Discover</span><Microscope aria-hidden="true" /><h3>Learn the science</h3><p>Explore anatomy, physiology and diagnostic principles through academic and laboratory learning.</p><Link className="text-link" href="/bnys#curriculum">Explore the curriculum →</Link></article>
         <article className="pillar-card"><span className="pillar-number">02 / Connect</span><Sprout aria-hidden="true" /><h3>Connect with nature</h3><p>Study yoga, nutrition and naturopathy as part of a broad approach to health and wellbeing.</p><Link className="text-link" href="/bnys#overview">Meet the programme →</Link></article>

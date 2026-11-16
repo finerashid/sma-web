@@ -1,5 +1,6 @@
 import { BookOpenCheck, Brain, Droplets, HeartPulse, Salad, StretchHorizontal } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { CtaBanner } from "@/components/cta-banner";
 import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
@@ -7,14 +8,16 @@ import { courseYears, siteConfig } from "@/content/site";
 import { absoluteUrl, createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "BNYS Course: Duration, Curriculum and Training",
-  description: "Explore the 5½-year BNYS programme, year-wise subjects, natural therapies and one-year internship at SMA Medical College, Bhopal.",
+  title: "BNYS Course: Full Form, Duration & Subjects",
+  description: "Explore the BNYS course at SMA Medical College, Bhopal: full form, 5½-year duration, year-wise syllabus, yoga, naturopathy and clinical internship.",
   path: "/bnys",
 });
 
 const faq = [
-  { question: "What is the duration of BNYS?", answer: "The currently published duration is 5½ years: 4½ academic years followed by a one-year internship." },
+  { question: "What is the full form of BNYS?", answer: "BNYS stands for Bachelor of Naturopathy and Yogic Sciences. The undergraduate programme brings together naturopathy, yoga, foundational medical sciences and practical training." },
+  { question: "What is the duration of the BNYS course?", answer: `The programme lasts ${siteConfig.programme.duration}: ${siteConfig.programme.academics} of academic study followed by ${siteConfig.programme.internship} of internship.` },
   { question: "What does the BNYS curriculum cover?", answer: "It covers foundational medical sciences, naturopathy, yoga, diagnosis, therapeutic disciplines, research and supervised clinical learning." },
+  { question: "How many BNYS seats does SMA Medical College have?", answer: `SMA Medical College has an annual BNYS intake of ${siteConfig.programme.intake}. Contact admissions for current seat availability and the applicable admission process.` },
   { question: "Is the admission requirement the same every year?", answer: "Admission rules can change. Applicants should use the current verified admission notice rather than relying on older website claims." },
 ];
 
@@ -24,16 +27,26 @@ export default function BnysPage() {
       <JsonLd data={{
         "@context": "https://schema.org",
         "@type": "Course",
+        "@id": absoluteUrl("/bnys#course"),
         name: siteConfig.programme.name,
+        courseCode: "BNYS",
+        educationalLevel: "Undergraduate",
         description: metadata.description,
         url: absoluteUrl("/bnys"),
         timeRequired: "P5Y6M",
-        provider: { "@type": "CollegeOrUniversity", name: siteConfig.name, url: siteConfig.url },
+        provider: { "@type": "CollegeOrUniversity", "@id": absoluteUrl("/#college"), name: siteConfig.name, url: siteConfig.url },
+        hasCourseInstance: {
+          "@type": "CourseInstance",
+          courseMode: "Onsite",
+          location: { "@id": absoluteUrl("/#college") },
+        },
       }} />
       <PageHero
+        path="/bnys"
+        breadcrumb="BNYS course"
         eyebrow="Bachelor of Naturopathy and Yogic Sciences"
-        title="A 5½-year journey from foundations to practice"
-        description="BNYS combines foundational medical sciences, naturopathy, yoga, diagnostics and supervised clinical learning."
+        title="BNYS course: from foundations to practice"
+        description="Study naturopathy and yogic sciences in Bhopal, Madhya Pradesh, through a 5½-year programme combining academic study with supervised clinical learning."
       >
         <div className="hero-fact-row">
           <span><strong>4½ years</strong> academics</span>
@@ -49,10 +62,12 @@ export default function BnysPage() {
           </div>
           <div>
             <p className="eyebrow">Programme overview</p>
-            <h2>Science-informed, whole-person learning</h2>
+            <h2>What is BNYS?</h2>
             <div className="rich-text">
+              <p>BNYS stands for Bachelor of Naturopathy and Yogic Sciences. At SMA Medical College in Bhopal, the undergraduate course combines the study of the human body with yoga, nutrition and naturopathy.</p>
               <p>Students come to BNYS seeking careers aligned with natural healing and whole-person medicine. The programme connects medical-science foundations and natural-care disciplines with practical work, clinical observation and supervised application.</p>
               <p>For current admission eligibility, counselling requirements and professional registration information, contact our admissions team and request the applicable official documents.</p>
+              <Link className="text-link" href="/admissions#questions">BNYS eligibility, fees and admission questions →</Link>
             </div>
           </div>
         </div>
@@ -72,7 +87,7 @@ export default function BnysPage() {
       </section>
       <section id="curriculum" className="section">
         <div className="container">
-          <div className="section-heading"><div><p className="eyebrow">Year-wise curriculum</p><h2>What students study</h2></div><p>An overview of the subjects studied throughout the programme. The university syllabus determines the final academic structure.</p></div>
+          <div className="section-heading"><div><p className="eyebrow">Year-wise curriculum</p><h2>BNYS subjects and syllabus</h2></div><p>An overview of the subjects studied throughout the programme. The university syllabus determines the final academic structure.</p></div>
           <div className="curriculum-list">
             {courseYears.map((year, index) => (
               <article key={year.year}>

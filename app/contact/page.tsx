@@ -6,7 +6,7 @@ import { campusDirectionsUrl } from "@/lib/directions";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Contact SMA Medical College",
+  title: "Contact & Directions to Our Bhopal Campus",
   description: "Contact SMA Medical College in Bhopal for BNYS admissions and campus visits. Find directions from the airport, Nadra Bus Stand and Bhopal Junction.",
   path: "/contact",
 });
@@ -16,7 +16,7 @@ const transportIcons = { airport: Plane, bus: Bus, rail: TrainFront };
 export default function ContactPage() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Talk to SMA Medical College" description="Contact the admissions team, plan a campus visit or send a general enquiry." />
+      <PageHero path="/contact" eyebrow="Contact" title="Contact SMA Medical College, Bhopal" description="Contact our BNYS admissions team or visit the campus on Airport Road, Parwaliya Sadak, Bhopal, Madhya Pradesh." />
       <section className="section">
         <div className="container contact-cards">
           <article>

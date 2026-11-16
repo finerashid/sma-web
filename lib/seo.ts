@@ -9,23 +9,31 @@ export function createMetadata({
   title,
   description,
   path,
+  index = true,
 }: {
   title: string;
   description: string;
   path: string;
+  index?: boolean;
 }): Metadata {
   const canonical = absoluteUrl(path);
+  const fullTitle = `${title} | ${siteConfig.shortName}`;
 
   return {
-    title,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical },
+    robots: {
+      index,
+      follow: true,
+      googleBot: { index, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+    },
     openGraph: {
       type: "website",
       locale: siteConfig.locale,
       url: canonical,
       siteName: siteConfig.shortName,
-      title,
+      title: fullTitle,
       description,
       images: [
         {
@@ -38,7 +46,7 @@ export function createMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: fullTitle,
       description,
       images: [absoluteUrl("/og.png")],
     },

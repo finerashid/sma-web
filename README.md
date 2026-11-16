@@ -129,11 +129,15 @@ and recommended conversions.
 
 ## SEO and migration
 
+- Research, target search phrases and page mapping: `docs/SEO-RESEARCH.md`.
+- Analytics and Search Console connection are deferred; setup is optional.
 - Edit global identity and metadata in `app/layout.tsx`.
 - Edit route metadata through `createMetadata()` in `lib/seo.ts`.
 - Update the route list in `app/sitemap.ts` when adding pages.
 - Legacy `.php` redirects live in `next.config.ts`.
 - Keep `NEXT_PUBLIC_SITE_URL` set to the production origin.
+- Set `GOOGLE_SITE_VERIFICATION` to a Search Console HTML verification code only
+  when connecting the property; rebuild to publish the tag.
 - Place verified PDFs in `public/documents` and link them from Admissions or About.
 
 ## Quality checks

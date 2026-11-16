@@ -21,7 +21,7 @@ export function SiteFooter() {
             </span>
           </Link>
           <p>
-            A specialised BNYS learning environment bringing together medical
+            A BNYS college in Bhopal, Madhya Pradesh, bringing together medical
             foundations, naturopathy, yoga and clinical experience.
           </p>
         </div>
@@ -40,6 +40,9 @@ export function SiteFooter() {
         <div>
           <h2 className="footer-heading">Information</h2>
           <ul className="footer-links">
+            <li><Link href="/bnys#curriculum">BNYS syllabus</Link></li>
+            <li><Link href="/admissions#questions">Admission and fees</Link></li>
+            <li><Link href="/admissions#regional-guide">Guide for out-of-state students</Link></li>
             <li><Link href="/contact">Contact</Link></li>
             <li><Link href="/privacy">Privacy policy</Link></li>
           </ul>

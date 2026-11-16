@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "SMA Medical College",
   legalAlternateName: "SMA AYUSH Medical College of Naturopathy and Yogic Science",
   description:
-    "Explore the BNYS programme, campus facilities and admissions at SMA Medical College of Naturopathy & Yogic Sciences in Bhopal, Madhya Pradesh.",
+    "Study BNYS at SMA Medical College in Bhopal, Madhya Pradesh. Explore the naturopathy and yoga course, 30-student intake, campus and admission guidance.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://smamedicalcollege.com",
   locale: "en_IN",
   phone: "+91 89208 37157",

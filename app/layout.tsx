@@ -17,13 +17,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.shortName,
   category: "education",
-  keywords: [
-    "BNYS college in Bhopal",
-    "BNYS admission 2026",
-    "Bachelor of Naturopathy and Yogic Sciences",
-    "naturopathy college Madhya Pradesh",
-    "yoga and naturopathy course",
-  ],
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.shortName,
   publisher: siteConfig.shortName,
@@ -60,13 +54,21 @@ export const viewport: Viewport = {
 const collegeSchema = {
   "@context": "https://schema.org",
   "@type": ["CollegeOrUniversity", "Organization"],
+  "@id": absoluteUrl("/#college"),
   name: siteConfig.name,
-  alternateName: siteConfig.legalAlternateName,
+  alternateName: [siteConfig.shortName, siteConfig.legalAlternateName],
+  description: siteConfig.description,
   url: siteConfig.url,
   logo: absoluteUrl("/images/sma-logo.webp"),
   image: absoluteUrl("/images/campus-hero.webp"),
   telephone: siteConfig.phoneHref,
   email: siteConfig.email,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "admissions",
+    telephone: siteConfig.phoneHref,
+    email: siteConfig.email,
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: siteConfig.address.street,
@@ -88,6 +90,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <JsonLd data={collegeSchema} />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": absoluteUrl("/#website"),
+          url: absoluteUrl("/"),
+          name: siteConfig.shortName,
+          alternateName: siteConfig.name,
+          inLanguage: "en-IN",
+          publisher: { "@id": absoluteUrl("/#college") },
+        }} />
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />

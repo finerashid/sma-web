@@ -6,8 +6,8 @@ import { createMetadata } from "@/lib/seo";
 export const dynamic = "force-static";
 
 export const metadata = createMetadata({
-  title: "Campus Gallery",
-  description: "View SMA Medical College campus, laboratory, clinical-training and community-event photographs.",
+  title: "Bhopal Campus Photos & Student Activities",
+  description: "See SMA Medical College in Bhopal through campus photos, BNYS laboratory and clinical training, yoga activities and student events.",
   path: "/gallery",
 });
 
@@ -17,7 +17,7 @@ export default function GalleryPage() {
 
   return (
     <>
-      <PageHero eyebrow="Campus gallery" title="Learning and life at SMA" description={`${albums.length} albums and ${photoCount} photographs from the college campus, practical learning and community activities.`} />
+      <PageHero path="/gallery" eyebrow="Campus gallery" title="Learning and life at SMA" description={`${albums.length} albums and ${photoCount} photographs from the college campus, practical learning and community activities.`} />
       <section className="section gallery-page"><div className="container"><GalleryGrid albums={albums} /></div></section>
     </>
   );

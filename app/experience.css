@@ -115,6 +115,12 @@
 /* A common botanical detail connects the inner pages without adding more content. */
 .page-hero { background: linear-gradient(110deg,#f4f3e9 20%,#e6eddb); padding-block: clamp(2rem, 3.5vw, 3rem); }
 .page-hero-inner { max-width: var(--container); text-shadow: none; }
+.breadcrumbs { font-size: .78rem; color: var(--ink-700); margin-bottom: 1rem; }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; list-style: none; padding: 0; margin: 0; }
+.breadcrumbs li { display: inline-flex; align-items: center; gap: .5rem; }
+.breadcrumbs li + li::before { content: "/"; opacity: .5; }
+.breadcrumbs a { text-decoration: underline; text-underline-offset: .2em; }
+.admission-steps a { text-decoration: underline; text-underline-offset: .2em; }
 .page-hero h1 { max-width: 880px; }
 .page-botanical { position: absolute; right: -80px; top: -70px; width: 400px; height: 400px; pointer-events: none; opacity: .5; }
 .page-botanical span { position: absolute; inset: 0; border: 1px solid #49724633; border-radius: 50%; }

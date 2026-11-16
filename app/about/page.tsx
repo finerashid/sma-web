@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "About the College",
-  description: "Learn about SMA Medical College, its vision, mission and approach to naturopathy and yogic-science education in Bhopal.",
+  title: "About Our Naturopathy College in Bhopal",
+  description: "Meet SMA Medical College's founder and leadership. Learn about our approach to BNYS, naturopathy and yoga education in Bhopal, Madhya Pradesh.",
   path: "/about",
 });
 
@@ -14,9 +14,10 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        path="/about"
         eyebrow="About SMA"
-        title="Rooted in nature. Built around learning."
-        description="SMA Medical College brings together naturopathy, yoga, foundational medical sciences and practical learning in Bhopal."
+        title="SMA Medical College, Bhopal"
+        description="A naturopathy and yogic sciences college in Madhya Pradesh, Central India. Rooted in nature and built around learning."
       />
       <section className="section leadership-section">
         <div className="container">

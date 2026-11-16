@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { CheckCircle2, LoaderCircle } from "lucide-react";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -30,7 +31,7 @@ export function EnquiryForm({ source = "website" }: { source?: string }) {
       form.reset();
       setStatus("success");
       setMessage(result.message || "Thank you. The admissions team will contact you.");
-      window.gtag?.("event", "submit_application_enquiry", { source });
+      trackAnalyticsEvent("generate_lead", { form_source: source });
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Could not send the enquiry.");

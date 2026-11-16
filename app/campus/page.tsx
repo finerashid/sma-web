@@ -6,7 +6,7 @@ import { clinicTherapies, facilities } from "@/content/site";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
-  title: "Campus, Hospital, Laboratories and Hostels",
+  title: "BNYS Campus, Hospital & Hostels in Bhopal",
   description: "Explore the SMA Medical College campus, laboratories, library, attached hospital, hostels and student facilities in Bhopal.",
   path: "/campus",
 });
@@ -16,7 +16,7 @@ const icons = { FlaskConical, Hospital, BookOpen, BedDouble, Monitor, Activity }
 export default function CampusPage() {
   return (
     <>
-      <PageHero eyebrow="Campus and facilities" title="Room to learn. Space to belong." description="Discover classrooms, practical learning spaces and everyday life at our Bhopal campus." />
+      <PageHero path="/campus" eyebrow="Campus and facilities" title="Your BNYS campus in Bhopal" description="Discover laboratories, yoga spaces, the attached hospital and student facilities at SMA Medical College, Madhya Pradesh." />
       <section className="section">
         <div className="container campus-feature-image">
           <Image src="/gallery/Campus/college-campus-entrance.webp" alt="SMA Medical College campus entrance area" width={1024} height={576} priority sizes="100vw" />
