@@ -146,7 +146,7 @@ export const publishedLeadership = [
   {
     name: "Dr. Mohan Sharma",
     publishedTitle: "President",
-    image: "/images/leadership/mohan-sharma.jpg",
+    image: "/images/leadership/mohan_sharma_v2.png",
     imageAlt: "Portrait of Dr. Mohan Sharma",
     focus: "A founding vision for natural-medicine education",
     summary:
@@ -184,7 +184,7 @@ export const publishedLeadership = [
   {
     name: "Dr. Dilip Rajoyria",
     publishedTitle: "Principal",
-    image: "/images/leadership/dilip-rajoyria.jpg",
+    image: "/images/leadership/dilip_rajoriya_v2.png",
     imageAlt: "Portrait of Dr. Dilip Rajoyria",
     focus: "Accessible education, research and clinical application",
     summary:
