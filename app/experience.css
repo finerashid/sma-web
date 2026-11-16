@@ -1,0 +1,321 @@
+/* SMA's botanical visual layer. Layout and form foundations live in globals.css. */
+:root { --sma-lime: #d8ecac; --sma-cream: #f6f4eb; --sma-deep: #103d32; }
+
+/* Separate current students' utilities from the admissions navigation. */
+.announcement-bar { background: #0d3029; }
+.announcement-inner { min-height: 38px; }
+.admissions-status { display: inline-flex; align-items: center; gap: 8px; }
+.admissions-status i, .hero-session > span { width: 6px; height: 6px; border-radius: 50%; background: #c7e5a2; box-shadow: 0 0 0 4px #c7e5a21a; }
+.utility-links { display: flex; align-items: center; gap: 22px; }
+.announcement-inner .erp-link { padding: 9px 0 9px 20px; border-left: 1px solid #ffffff30; color: #fff; font-size: .76rem; }
+.erp-link svg { transition: transform .25s; }
+.erp-link:hover svg { transform: translate(2px,-2px); }
+.motion-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 0; padding: 0; background: transparent; color: #bbd0c5; font-size: .7rem; cursor: pointer; }
+.motion-toggle:hover { color: white; }
+.site-header { background: rgba(252,251,247,.95); }
+.nav-shell { min-height: 82px; }
+.desktop-nav { gap: 1.2rem; }
+.desktop-nav .button { border-radius: 999px; padding-inline: 1.3rem; }
+.brand img { border-radius: 50%; }
+.button { border-radius: 999px; transition: transform .3s, box-shadow .3s, background-color .3s; }
+.button::after { display: block; }
+.button:hover { box-shadow: 0 8px 22px #103d3220; }
+.button svg { transition: transform .3s; }
+.button:hover svg { transform: translateX(3px); }
+
+/* One expressive hero, with the admissions path kept clearly in view. */
+.home-hero { background: radial-gradient(ellipse at 70% 35%, #285b48 0%, #123e33 45%, #0b2e27 100%); color: white; isolation: isolate; }
+.home-hero-grid { position: relative; z-index: 2; grid-template-columns: 1.05fr 1fr; min-height: 0; padding-block: 3rem 4.5rem; gap: 2.5rem; }
+.home-hero-copy .eyebrow { color: #c9deae; font-size: .71rem; letter-spacing: .18em; display: flex; align-items: center; gap: 12px; }
+.home-hero-copy .eyebrow::before { content: ""; width: 30px; height: 1px; background: #bacb93; }
+.home-hero-copy h1 { color: #fffdf6; font-size: clamp(3rem, 4.7vw, 4.6rem); line-height: 1.12; letter-spacing: -.04em; text-shadow: none; text-wrap: balance; }
+.home-hero-copy h1 em { display: inline; color: var(--sma-lime); font-style: normal; }
+.home-hero-copy .hero-lead { color: #d3dfd5; max-width: 45ch; font-size: 1.03rem; line-height: 1.8; margin-block: 1.6rem 2rem; }
+.home-hero-copy .button-row { gap: 1.6rem; }
+.home-hero-copy .button-primary { padding: 1rem 1.6rem; background: var(--sma-lime); color: #173f32; box-shadow: 0 8px 24px #0000001a; }
+.home-hero-copy .button-primary:hover { background: #ebf5d7; box-shadow: 0 10px 28px #00000030; }
+.home-hero-copy .text-link { color: #f5f5df; font-size: .92rem; }
+.hero-session { display: flex; align-items: center; gap: 10px; color: #b9cfbf; margin-top: 2rem; font-size: .77rem; }
+
+.campus-composition { position: relative; height: 420px; min-width: 0; isolation: isolate; margin-inline: 12px 0; }
+.campus-main-photo { position: absolute; inset: 0 0 30px 20px; margin: 0; overflow: hidden; border-radius: 160px 24px 80px 24px; border: 7px solid #ffffff15; transform: rotate(3deg); box-shadow: 0 28px 70px #051a1d66; background: #2b5744; }
+.campus-main-photo > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.07); }
+.campus-main-photo::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent,#061e28cc); }
+.campus-main-photo figcaption { position: absolute; z-index: 1; right: 28px; bottom: 25px; text-align: right; display: grid; gap: 4px; color: white; }
+.campus-main-photo figcaption span { font-size: .68rem; text-transform: uppercase; letter-spacing: .12em; }
+.campus-main-photo figcaption strong { font-family: var(--font-heading),serif; font-size: 1.6rem; font-weight: 400; }
+.campus-inset { position: absolute; z-index: 3; width: 210px; left: -30px; bottom: 0; padding: 7px; border-radius: 18px; background: var(--sma-cream); box-shadow: 0 14px 35px #031c2355; transform: rotate(-5deg); transition: rotate .4s, box-shadow .4s; }
+.campus-inset > img { display: block; width: 100%; height: 140px; object-fit: cover; border-radius: 12px; }
+.campus-inset > span { display: flex; justify-content: space-between; align-items: center; padding: 9px 7px 4px; font-size: .77rem; color: #21483a; font-weight: 600; }
+.campus-inset:hover { rotate: 5deg; box-shadow: 0 20px 45px #031c2377; }
+.nature-seal { position: absolute; z-index: 3; top: -24px; right: -18px; width: 112px; height: 112px; border-radius: 50%; background: #dce8bb; box-shadow: 0 8px 24px #051d2633; color: #23513d; }
+.nature-seal > svg:first-child { width: 100%; height: 100%; fill: currentColor; font-family: var(--font-body),sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2px; }
+.nature-seal > svg:last-child { position: absolute; width: 30px; height: 30px; inset: 41px; stroke-width: 1.3; }
+.campus-orbit { position: absolute; z-index: -1; inset: -40px -25px -10px -30px; border: 1px solid #e4efbf22; border-radius: 50%; transform: rotate(-25deg); }
+.campus-orbit > span { position: absolute; border: 1px solid #e4efbf15; border-radius: 50%; inset: -22px; }
+.campus-orbit > span:last-child { inset: 20px; }
+
+/* Decorative motion stays behind content and never intercepts interaction. */
+.nature-atmosphere { position: absolute; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; }
+.nature-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle,#b5d69312,transparent 65%); }
+.nature-glow-one { left: 18%; top: -60%; }
+.nature-glow-two { right: -10%; bottom: -30%; }
+.drifting-leaf { --leaf-turn: -30deg; position: absolute; width: 24px; height: 43px; border-radius: 100% 0 100% 0; background: linear-gradient(135deg,#c9df97,#6c9e5e 65%,#366349); box-shadow: inset 1px 1px 3px #e5f0c450; opacity: .45; transform: rotate(var(--leaf-turn)); }
+.drifting-leaf::after { content: ""; position: absolute; inset: 6px 50%; width: 1px; background: #d3e8aa70; transform: rotate(29deg); }
+.drifting-leaf-1 { left: 3%; top: 20%; }
+.drifting-leaf-2 { left: 43%; top: 9%; --leaf-turn: 40deg; }
+.drifting-leaf-3 { left: 48%; top: 70%; width: 32px; height: 55px; }
+.drifting-leaf-4 { right: 2%; top: 42%; --leaf-turn: 90deg; }
+.drifting-leaf-5 { left: 19%; bottom: 6%; width: 18px; height: 30px; }
+.drifting-leaf-6 { right: 32%; bottom: 4%; --leaf-turn: 65deg; }
+.drifting-leaf-7 { right: 17%; top: 4%; width: 14px; height: 26px; }
+.hero-wave { position: absolute; bottom: -1px; left: 0; width: 100%; height: 55px; overflow: visible; }
+.hero-wave path { fill: var(--sma-cream); }
+.hero-wave path:first-child { opacity: .15; }
+.hero-wave path:last-child { opacity: 1; }
+
+.programme-facts { position: relative; background: var(--sma-cream); }
+.facts-grid { padding-block: 1.4rem 1.6rem; border-bottom: 1px solid #16452f22; }
+.facts-grid > div { padding-left: 2rem; border-color: #16452f22; }
+.facts-grid > div:first-child { padding-left: 0; }
+.facts-grid strong { color: #214d3e; font-family: var(--font-heading),serif; font-size: 2rem; }
+.facts-grid span { color: #526556; font-size: .76rem; margin-top: .25rem; }
+.experience-section { background: var(--sma-cream); }
+.section-heading h2 { max-width: 630px; }
+.section-heading > p { font-size: .96rem; }
+.pillar-grid { gap: 1.2rem; }
+.pillar-card { position: relative; overflow: hidden; padding: 2rem; border: 1px solid #d9dfd0; border-radius: 20px; background: #fffefa; transition: translate .4s, box-shadow .4s, border-color .4s; }
+.pillar-card::before { content: ""; position: absolute; width: 150px; height: 150px; border: 1px solid #52745020; border-radius: 50%; right: -70px; top: -70px; transition: transform .6s; }
+.pillar-card::after { display: none; }
+.pillar-card:hover { translate: 0 -8px; box-shadow: 0 20px 38px #163d3210; border-color: #91ac81; }
+.pillar-card:hover::before { transform: scale(1.6); }
+.pillar-number { display: block; color: #61775c; text-transform: uppercase; letter-spacing: .13em; font-size: .62rem; margin-bottom: 1.5rem; }
+.pillar-card > svg { width: 32px; height: 32px; stroke-width: 1.35; margin-bottom: 1.3rem; }
+.pillar-card h3 { font-size: 1.7rem; margin-bottom: 1rem; }
+.pillar-card p { font-size: .9rem; line-height: 1.8; }
+.pillar-card .text-link { margin-top: 1.2rem; font-size: .79rem; }
+.pillar-card:nth-child(2) { background: #214e3e; border-color: #214e3e; }
+.pillar-card:nth-child(2) h3 { color: #fffdf6; }
+.pillar-card:nth-child(2) p { color: #dae4d7; }
+.pillar-card:nth-child(2) .pillar-number,.pillar-card:nth-child(2) > svg,.pillar-card:nth-child(2) .text-link { color: #d8ecac; }
+.pillar-card:nth-child(2)::before { border-color: #ffffff22; }
+
+.campus-preview-section { background: #fffefa; }
+.campus-preview { grid-template-columns: 1.35fr 1fr 1fr; gap: 1.4rem; align-items: end; }
+.campus-preview a { position: relative; overflow: hidden; border-radius: 18px; isolation: isolate; box-shadow: 0 14px 28px #2347320c; }
+.campus-preview a > div { aspect-ratio: auto; height: 340px; border-radius: 0; }
+.campus-preview a:first-child > div { height: 420px; }
+.campus-preview a::after { content: ""; position: absolute; inset: 30% 0 0; z-index: 0; background: linear-gradient(transparent,#0b302be6); pointer-events: none; }
+.campus-preview img { transition: transform .8s cubic-bezier(.2,.65,.3,1); }
+.campus-preview a:hover img { transform: scale(1.08); }
+.campus-preview a > span { position: absolute; z-index: 1; bottom: 0; left: 0; width: 100%; padding: 1.5rem; color: white; font-weight: 500; line-height: 1.5; }
+.campus-preview a > span svg { width: 34px; height: 34px; padding: 8px; border: 1px solid #ffffff55; border-radius: 50%; transition: background .3s, transform .3s; }
+.campus-preview a:hover > span svg { background: #ffffff20; transform: rotate(-40deg); }
+
+/* A common botanical detail connects the inner pages without adding more content. */
+.page-hero { background: linear-gradient(110deg,#f4f3e9 20%,#e6eddb); padding-block: clamp(2rem, 3.5vw, 3rem); }
+.page-hero-inner { max-width: var(--container); text-shadow: none; }
+.page-hero h1 { max-width: 880px; }
+.page-botanical { position: absolute; right: -80px; top: -70px; width: 400px; height: 400px; pointer-events: none; opacity: .5; }
+.page-botanical span { position: absolute; inset: 0; border: 1px solid #49724633; border-radius: 50%; }
+.page-botanical span:nth-child(2) { inset: 45px; }
+.page-botanical i { position: absolute; width: 90px; height: 155px; right: 120px; top: 170px; border-radius: 100% 0; transform: rotate(-30deg); background: linear-gradient(140deg,#a8c77950,#74965a15); border: 1px solid #49724622; }
+.admission-intro { background: radial-gradient(ellipse at top left,#e2ebd7,transparent 55%),var(--sma-cream); }
+.admission-form-card { border-top: 4px solid #7e9d5b; box-shadow: 0 20px 55px #123c350a; }
+.contact-cards article { border-top: 3px solid #96ae76; }
+.cta-section { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(115deg,#0c332b,#245b43); padding-block: 3.25rem; }
+.cta-inner { position: relative; z-index: 1; }
+.cta-inner h2 { max-width: 570px; font-size: clamp(2.5rem,4vw,3.6rem); }
+.cta-inner .button-light { background: var(--sma-lime); }
+.cta-orbits { position: absolute; z-index: 0; right: -40px; top: -100px; width: 520px; height: 520px; pointer-events: none; }
+.cta-orbits i { position: absolute; inset: 0; border: 1px solid #d8ecac30; border-radius: 50%; }
+.cta-orbits i:nth-child(2) { inset: 45px; }
+.cta-orbits i:nth-child(3) { inset: 90px; }
+.site-footer { background: var(--sma-cream); }
+.footer-contact svg { color: var(--green-700); }
+.footer-links a:hover,.footer-contact a:hover { color: #286f4c; }
+
+/* Reveal only after enhancement has attached an observer; no hidden SSR content. */
+.motion-reveal { opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.65,.3,1); }
+.motion-reveal.motion-visible,.motion-reveal:focus-within { opacity: 1; transform: translateY(0); }
+.pillar-card.motion-visible:nth-child(2),.campus-preview > .motion-visible:nth-child(2) { transition-delay: .08s; }
+.pillar-card.motion-visible:nth-child(3),.campus-preview > .motion-visible:nth-child(3) { transition-delay: .16s; }
+
+@keyframes sma-leaf-drift { 0%,100% { translate: 0 -15px; rotate: -12deg; } 50% { translate: 22px 38px; rotate: 28deg; } }
+@keyframes sma-orbit { to { rotate: 360deg; } }
+@keyframes sma-breathe { 0%,100% { scale: .94; opacity: .55; } 50% { scale: 1.05; opacity: 1; } }
+@keyframes sma-photo-float { 0%,100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+@keyframes sma-photo-pan { 0%,100% { transform: scale(1.07) translateX(0); } 50% { transform: scale(1.12) translateX(-1%); } }
+@keyframes sma-wave { from { transform: translateX(0); } to { transform: translateX(-360px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .drifting-leaf { animation: sma-leaf-drift 9s ease-in-out infinite; }
+  .drifting-leaf:nth-of-type(2n) { animation-duration: 12s; animation-delay: -4s; }
+  .drifting-leaf:nth-of-type(3n) { animation-duration: 15s; animation-delay: -8s; }
+  .nature-seal > svg:first-child { animation: sma-orbit 36s linear infinite; }
+  .campus-orbit,.page-botanical span,.cta-orbits { animation: sma-breathe 9s ease-in-out infinite; }
+  .campus-main-photo { animation: sma-photo-float 8s ease-in-out infinite; }
+  .campus-main-photo > img { animation: sma-photo-pan 20s ease-in-out infinite; }
+  .campus-inset { animation: sma-photo-float 7s -3s ease-in-out infinite; }
+  .nature-glow { animation: sma-breathe 14s ease-in-out infinite; }
+  .hero-wave path { animation: sma-wave 16s linear infinite; }
+  .hero-wave path:first-child { animation-duration: 22s; animation-direction: reverse; }
+  .page-botanical i { animation: sma-leaf-drift 12s ease-in-out infinite; }
+}
+@media (max-width: 1200px) and (min-width: 1121px) {
+  .desktop-nav { display: flex; gap: .85rem; }
+  .mobile-menu-button { display: none; }
+}
+@media (max-width: 1120px) {
+  .home-hero-grid { gap: 2rem; }
+  .campus-composition { height: 440px; margin-right: 15px; }
+  .campus-inset { width: 175px; left: -10px; }
+  .campus-inset > img { height: 115px; }
+  .nature-seal { width: 95px; height: 95px; right: -14px; }
+  .nature-seal > svg:last-child { inset: 33px; }
+}
+@media (max-width: 900px) {
+  .home-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; padding-block: 2.5rem 4rem; }
+  .home-hero-copy { max-width: 650px; }
+  .home-hero-copy h1 { font-size: clamp(3rem,6.5vw,4.5rem); }
+  .campus-composition { width: min(560px,90%); height: 420px; margin-inline: auto; }
+  .campus-main-photo { inset-inline: 20px 0; }
+  .campus-inset { width: 210px; left: -15px; }
+  .campus-inset > img { height: 140px; }
+  .campus-preview { gap: 1rem; grid-template-columns: 1fr 1fr; }
+  .campus-preview a:first-child { grid-column: span 2; }
+  .campus-preview a:first-child > div { height: 360px; }
+  .campus-preview a > div { height: 300px; }
+  .utility-links { gap: 15px; }
+  .motion-toggle span { display: none; }
+  .page-botanical { opacity: .3; right: -180px; }
+}
+@media (max-width: 640px) {
+  .announcement-inner { font-size: .65rem; min-height: 38px; }
+  .admissions-status { gap: 7px; letter-spacing: 0; }
+  .utility-links { gap: 10px; }
+  .utility-phone { display: none; }
+  .utility-links > a:not(.erp-link) { min-width: 25px; min-height: 34px; justify-content: center; }
+  .announcement-inner .erp-link { font-size: .68rem; padding-left: 10px; min-height: 38px; }
+  .motion-toggle { min-width: 26px; justify-content: center; }
+  .nav-shell { min-height: 74px; }
+  .home-hero-grid { padding-top: 2rem; padding-bottom: 3.5rem; gap: 2.5rem; }
+  .home-hero-copy .eyebrow { font-size: .62rem; letter-spacing: .13em; }
+  .home-hero-copy .eyebrow::before { width: 18px; }
+  .home-hero-copy h1 { font-size: clamp(2.7rem,10vw,3.7rem); }
+  .home-hero-copy .hero-lead { font-size: .94rem; margin-block: 1.3rem 1.6rem; }
+  .home-hero-copy .button-row { gap: 1rem; align-items: center; }
+  .home-hero-copy .button-row .button { width: auto; padding: .9rem 1.2rem; }
+  .home-hero-copy .text-link { font-size: .85rem; }
+  .hero-session { margin-top: 1.7rem; font-size: .7rem; }
+  .campus-composition { width: calc(100% - 20px); height: 320px; }
+  .campus-main-photo { inset: 0 0 25px 10px; border-radius: 100px 18px 58px 18px; border-width: 4px; }
+  .campus-main-photo figcaption { right: 18px; bottom: 24px; }
+  .campus-main-photo figcaption span { font-size: .52rem; }
+  .campus-main-photo figcaption strong { font-size: 1.2rem; }
+  .campus-inset { width: 146px; left: -8px; bottom: 0; padding: 5px; }
+  .campus-inset > img { height: 96px; }
+  .campus-inset > span { font-size: .66rem; padding: 6px 4px 3px; }
+  .nature-seal { width: 80px; height: 80px; top: -18px; right: -8px; }
+  .nature-seal > svg:last-child { width: 24px; height: 24px; inset: 28px; }
+  .campus-orbit { inset: -20px -5px 0; }
+  .drifting-leaf { width: 16px; height: 29px; opacity: .35; }
+  .facts-grid { gap: 1.5rem 0; }
+  .facts-grid strong { font-size: 1.5rem; }
+  .facts-grid span { font-size: .69rem; }
+  .facts-grid > div { padding-left: 1.3rem; }
+  .facts-grid > div:nth-child(3) { padding-left: 0; }
+  .pillar-card { padding: 1.7rem; }
+  .pillar-number { margin-bottom: 1.5rem; }
+  .campus-preview { grid-template-columns: 1fr; gap: 1.2rem; }
+  .campus-preview a:first-child { grid-column: auto; }
+  .campus-preview a > div,.campus-preview a:first-child > div { height: 320px; }
+  .page-hero { padding-block: 2rem; }
+  .cta-section { padding-block: 2.5rem; }
+  .cta-inner h2 { font-size: 2.6rem; }
+  .cta-orbits { right: -300px; }
+}
+@media (max-width: 360px) {
+  .utility-links { gap: 5px; }
+  .announcement-inner .erp-link { padding-left: 7px; }
+  .home-hero-copy h1 { font-size: 2.5rem; }
+  .brand strong { font-size: .85rem; }
+}
+/* A visitor can pause motion independently of their OS preference. */
+html[data-motion="paused"] *, html[data-motion="paused"] *::before, html[data-motion="paused"] *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+html[data-motion="paused"] .home-hero-copy > *, html[data-motion="paused"] .page-hero-inner > *, html[data-motion="paused"] .motion-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal { opacity: 1; transform: none; }
+  .campus-main-photo, .campus-main-photo > img, .campus-inset, .nature-seal svg, .drifting-leaf, .page-botanical i, .hero-wave path { animation: none !important; }
+}
+
+html[data-motion="paused"] { scroll-behavior: auto !important; }
+@media (max-width: 360px) {
+  .utility-links > a:not(.erp-link) { display: none; }
+  .admissions-status,.announcement-inner .erp-link { white-space: nowrap; }
+  .announcement-inner { gap: 8px; }
+}
+
+/* Compact spacing shared by every page, without shrinking reading or tap targets. */
+.section-heading { gap: 1.25rem; }
+.page-lead { margin-top: .9rem; margin-bottom: 0; }
+.page-hero-inner > .eyebrow { margin-bottom: .65rem; }
+.hero-fact-row { margin-top: 1.25rem; }
+.section-nav { padding-block: .7rem; }
+.pillar-card { padding: 1.6rem; }
+.pillar-card h3 { margin-bottom: .75rem; }
+.pillar-card > svg { margin-bottom: 1rem; }
+.pillar-card .text-link { margin-top: .6rem; }
+.contact-cards article { padding: 1.3rem; }
+.contact-cards svg { margin-bottom: .75rem; }
+.contact-cards p:last-child { margin-bottom: 0; }
+.form-section-grid > div > h2 { margin-bottom: .85rem; }
+.curriculum-list article { padding-block: 1.5rem; }
+.campus-feature-image img { height: 360px; }
+.site-footer { padding-top: 2.5rem; }
+.footer-grid { padding-bottom: 2rem; gap: 1.75rem; }
+.album-heading { margin-bottom: 1rem; padding-bottom: .75rem; }
+.legal-copy h2 { margin-top: 1.6rem; }
+
+/* Travel distances and the map form one compact, useful arrival section. */
+.arrival-layout { display: grid; grid-template-columns: 1fr 1.1fr; align-items: stretch; gap: clamp(1.5rem, 3.5vw, 3rem); }
+.arrival-info h2 { font-size: clamp(1.9rem, 3vw, 2.7rem); margin-bottom: .75rem; }
+.arrival-info > p:not(.eyebrow):not(.travel-note) { font-size: .94rem; margin-bottom: 1rem; }
+.travel-connections { list-style: none; padding: 0; margin: 0; border-top: 1px solid #cfd8c9; }
+.travel-connections li { border-bottom: 1px solid #cfd8c9; }
+.travel-connections a { display: grid; grid-template-columns: 40px minmax(0,1fr) auto; align-items: center; gap: .9rem; padding-block: .85rem; border-radius: 8px; transition: background .25s; }
+.travel-connections a:hover { background: #ffffff85; }
+.travel-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #e3ebd9; color: #28543f; }
+.travel-icon > svg { width: 20px; height: 20px; stroke-width: 1.5; }
+.travel-place { display: grid; gap: .2rem; }
+.travel-place > strong { color: var(--forest-950); font-size: .93rem; font-weight: 600; }
+.travel-place > span { display: flex; align-items: center; gap: 4px; color: var(--ink-700); font-size: .73rem; }
+.travel-place svg { width: 13px; height: 13px; transition: transform .25s; }
+.travel-connections a:hover .travel-place svg { transform: translate(2px,-2px); }
+.travel-distance { display: grid; text-align: right; padding-right: .25rem; }
+.travel-distance small { font-size: .63rem; color: var(--ink-700); }
+.travel-distance > strong { font-family: var(--font-heading),serif; font-size: 1.65rem; line-height: 1.2; font-weight: 400; color: var(--forest-950); white-space: nowrap; }
+.travel-distance > strong > span { font-family: var(--font-body),sans-serif; font-size: .8rem; }
+.travel-note { font-size: .73rem; line-height: 1.65; color: var(--ink-500); margin: .85rem 0 0; }
+.arrival-map { display: flex; flex-direction: column; overflow: hidden; min-width: 0; border: 1px solid var(--line); border-radius: 18px; background: #fffefa; }
+.arrival-map iframe { display: block; flex: 1; width: 100%; min-height: 310px; border: 0; }
+.arrival-map-link { display: flex; align-items: center; gap: .6rem; min-height: 54px; padding: .8rem 1.1rem; color: var(--forest-900); font-size: .83rem; font-weight: 600; transition: background .25s; }
+.arrival-map-link:hover { background: #e8efdd; }
+.arrival-map-link svg { width: 18px; height: 18px; }
+.arrival-map-link svg:last-child { margin-left: auto; }
+@media (max-width: 900px) {
+  .arrival-layout { grid-template-columns: 1fr; }
+  .arrival-map iframe { height: 300px; min-height: 300px; flex: none; }
+}
+@media (max-width: 640px) {
+  .section-heading { gap: .8rem; }
+  .campus-feature-image img { height: 280px; }
+  .contact-cards { gap: .75rem; }
+  .site-footer { padding-top: 2rem; }
+  .footer-grid { gap: 1.5rem; }
+  .travel-connections a { gap: .65rem; grid-template-columns: 36px minmax(0,1fr) auto; }
+  .travel-icon { width: 36px; height: 36px; }
+  .travel-place > strong { font-size: .87rem; }
+  .travel-distance > strong { font-size: 1.5rem; }
+  .arrival-map iframe { height: 260px; min-height: 260px; }
+  .arrival-map-link { font-size: .76rem; }
+}

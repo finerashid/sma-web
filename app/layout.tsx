@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { AmbientNature } from "@/components/ambient-nature";
 import { AnalyticsConsent } from "@/components/analytics-consent";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/content/site";
 import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
+import "./experience.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -88,7 +88,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <JsonLd data={collegeSchema} />
-        <AmbientNature />
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />

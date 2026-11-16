@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SiteMotion } from "@/components/site-motion";
 import { primaryNavigation, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
@@ -26,11 +27,15 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="announcement-bar">
         <div className="container announcement-inner">
-          <span>Admissions {siteConfig.admissionsYear}</span>
-          <a href={`tel:${siteConfig.phoneHref}`} data-analytics="click_call_header">
+          <span className="admissions-status"><i aria-hidden="true" />Admissions {siteConfig.admissionsYear}</span>
+          <div className="utility-links">
+          <SiteMotion />
+          <a href={`tel:${siteConfig.phoneHref}`} aria-label={`Call SMA Medical College at ${siteConfig.phone}`} data-analytics="click_call_header">
             <Phone size={15} aria-hidden="true" />
-            {siteConfig.phone}
+            <span className="utility-phone">{siteConfig.phone}</span>
           </a>
+          <a className="erp-link" href="https://erp.smamedicalcollege.com">College ERP <ArrowUpRight size={14} aria-hidden="true" /></a>
+          </div>
         </div>
       </div>
       <div className="container nav-shell">
@@ -76,7 +81,7 @@ export function SiteHeader() {
           aria-label={open ? "Close navigation" : "Open navigation"}
           onClick={() => setOpen((current) => !current)}
         >
-          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}<span>{open ? "Close" : "Menu"}</span>
         </button>
       </div>
 
