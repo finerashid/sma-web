@@ -167,7 +167,7 @@ export const publishedLeadership = [
   {
     name: "Dr. Azeem Khan",
     publishedTitle: "President",
-    image: "/images/leadership/azeem-khan.png",
+    image: "/images/leadership/azeem_khan_v2.png",
     imageAlt: "Portrait of Dr. Azeem Khan",
     focus: "Whole-person care through naturopathy and yoga",
     summary:
