@@ -27,7 +27,7 @@ export const siteConfig = {
     duration: "5½ years",
     academics: "4½ years",
     internship: "1 year",
-    intake: "60 students",
+    intake: "30 students",
   },
   admissionsYear: "2026–27",
   mapEmbedUrl:
@@ -145,7 +145,7 @@ export const facilities = [
 export const publishedLeadership = [
   {
     name: "Dr. Mohan Sharma",
-    publishedTitle: "President",
+    publishedTitle: "Founder",
     image: "/images/leadership/mohan_sharma_v2.png",
     imageAlt: "Portrait of Dr. Mohan Sharma",
     focus: "A founding vision for natural-medicine education",

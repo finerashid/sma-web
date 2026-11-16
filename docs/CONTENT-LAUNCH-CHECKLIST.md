@@ -16,7 +16,6 @@ they are supported by a current written source.
 - Complete fee structure, payment schedule and refund policy
 - Admission dates and required documents
 - Current leadership and faculty roster with approved credentials
-- Resolve the current website’s duplicate “President” designation for Dr. Mohan Sharma and Dr. Azeem Khan
 - Current contact number, email, office hours and map location
 - Hostel availability and charges
 - Public yoga programme schedule and registration method

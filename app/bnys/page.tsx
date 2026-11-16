@@ -38,7 +38,7 @@ export default function BnysPage() {
         <div className="hero-fact-row">
           <span><strong>4½ years</strong> academics</span>
           <span><strong>1 year</strong> internship</span>
-          <span><strong>60 students</strong> published annual intake*</span>
+          <span><strong>{siteConfig.programme.intake}</strong> published annual intake*</span>
         </div>
       </PageHero>
       <nav className="section-nav container" aria-label="On this page"><a href="#overview">Overview</a><a href="#curriculum">Curriculum</a><a href="#questions">Questions</a><a href="/admissions">Admissions →</a></nav>
