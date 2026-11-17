@@ -3,6 +3,7 @@ import { AnalyticsConsent } from "@/components/analytics-consent";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SiteMotion } from "@/components/site-motion";
 import { siteConfig } from "@/content/site";
 import { absoluteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
+        <SiteMotion />
         <AnalyticsConsent />
       </body>
     </html>

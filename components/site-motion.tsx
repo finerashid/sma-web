@@ -1,38 +1,27 @@
 "use client";
 
-import { Pause, Play } from "lucide-react";
 import { useEffect, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 
-const storageKey = "sma-motion-paused";
-const motionEvent = "sma-motion-change";
-
-function getPaused() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return true;
-  try { return window.localStorage.getItem(storageKey) === "true"; }
-  catch { return false; }
+function getReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 function subscribe(callback: () => void) {
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  window.addEventListener("storage", callback);
-  window.addEventListener(motionEvent, callback);
   preference.addEventListener("change", callback);
   return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(motionEvent, callback);
     preference.removeEventListener("change", callback);
   };
 }
 
 /** Progressive enhancement: page content stays visible without JavaScript. */
 export function SiteMotion() {
-  const paused = useSyncExternalStore(subscribe, getPaused, () => false);
+  const reducedMotion = useSyncExternalStore(subscribe, getReducedMotion, () => false);
   const pathname = usePathname();
 
   useEffect(() => {
-    document.documentElement.dataset.motion = paused ? "paused" : "playing";
-    if (paused || !("IntersectionObserver" in window)) return;
+    if (reducedMotion || !("IntersectionObserver" in window)) return;
 
     const targets = Array.from(document.querySelectorAll<HTMLElement>(
       ".section-heading, .pillar-card, .campus-preview > a, .leadership-grid > article, .facility-detail-grid > article, .discipline-grid > article, .curriculum-list > article, .contact-cards > article, .album-heading, .photo-button, .cta-inner"
@@ -56,22 +45,7 @@ export function SiteMotion() {
       observer.disconnect();
       targets.forEach((target) => target.classList.remove("motion-reveal", "motion-visible"));
     };
-  }, [paused, pathname]);
+  }, [reducedMotion, pathname]);
 
-  function toggleMotion() {
-    // The OS preference always takes precedence over decorative motion.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    try { window.localStorage.setItem(storageKey, String(!paused)); }
-    catch { return; }
-    window.dispatchEvent(new Event(motionEvent));
-  }
-
-  return (
-    <button className="motion-toggle" type="button" onClick={toggleMotion}
-      aria-label={paused ? "Resume animations (respects reduced-motion settings)" : "Pause animations"}
-      aria-pressed={paused} title={paused ? "Resume animations" : "Pause animations"}>
-      {paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}
-      <span>{paused ? "Motion off" : "Pause motion"}</span>
-    </button>
-  );
+  return null;
 }

@@ -10,8 +10,6 @@
 .announcement-inner .erp-link { padding: 9px 0 9px 20px; border-left: 1px solid #ffffff30; color: #fff; font-size: .76rem; }
 .erp-link svg { transition: transform .25s; }
 .erp-link:hover svg { transform: translate(2px,-2px); }
-.motion-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 34px; border: 0; padding: 0; background: transparent; color: #bbd0c5; font-size: .7rem; cursor: pointer; }
-.motion-toggle:hover { color: white; }
 .site-header { background: rgba(252,251,247,.95); }
 .nav-shell { min-height: 82px; }
 .desktop-nav { gap: 1.2rem; }
@@ -192,7 +190,6 @@
   .campus-preview a:first-child > div { height: 360px; }
   .campus-preview a > div { height: 300px; }
   .utility-links { gap: 15px; }
-  .motion-toggle span { display: none; }
   .page-botanical { opacity: .3; right: -180px; }
 }
 @media (max-width: 640px) {
@@ -202,7 +199,6 @@
   .utility-phone { display: none; }
   .utility-links > a:not(.erp-link) { min-width: 25px; min-height: 34px; justify-content: center; }
   .announcement-inner .erp-link { font-size: .68rem; padding-left: 10px; min-height: 38px; }
-  .motion-toggle { min-width: 26px; justify-content: center; }
   .nav-shell { min-height: 74px; }
   .home-hero-grid { padding-top: 2rem; padding-bottom: 3.5rem; gap: 2.5rem; }
   .home-hero-copy .eyebrow { font-size: .62rem; letter-spacing: .13em; }
@@ -246,15 +242,11 @@
   .home-hero-copy h1 { font-size: 2.5rem; }
   .brand strong { font-size: .85rem; }
 }
-/* A visitor can pause motion independently of their OS preference. */
-html[data-motion="paused"] *, html[data-motion="paused"] *::before, html[data-motion="paused"] *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-html[data-motion="paused"] .home-hero-copy > *, html[data-motion="paused"] .page-hero-inner > *, html[data-motion="paused"] .motion-reveal { animation: none !important; opacity: 1 !important; transform: none !important; }
 @media (prefers-reduced-motion: reduce) {
   .motion-reveal { opacity: 1; transform: none; }
   .campus-main-photo, .campus-main-photo > img, .campus-inset, .nature-seal svg, .drifting-leaf, .page-botanical i, .hero-wave path { animation: none !important; }
 }
 
-html[data-motion="paused"] { scroll-behavior: auto !important; }
 @media (max-width: 360px) {
   .utility-links > a:not(.erp-link) { display: none; }
   .admissions-status,.announcement-inner .erp-link { white-space: nowrap; }

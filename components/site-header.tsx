@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowUpRight, Menu, Phone, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { SiteMotion } from "@/components/site-motion";
 import { primaryNavigation, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
@@ -29,7 +28,6 @@ export function SiteHeader() {
         <div className="container announcement-inner">
           <span className="admissions-status"><i aria-hidden="true" />Admissions {siteConfig.admissionsYear}</span>
           <div className="utility-links">
-          <SiteMotion />
           <a href={`tel:${siteConfig.phoneHref}`} aria-label={`Call SMA Medical College at ${siteConfig.phone}`} data-analytics="click_call_header">
             <Phone size={15} aria-hidden="true" />
             <span className="utility-phone">{siteConfig.phone}</span>
