@@ -16,15 +16,20 @@
 | Variable | Purpose |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical URLs, sitemap and social metadata |
-| `RESEND_API_KEY` | Sends website enquiries by email |
-| `ENQUIRY_FROM_EMAIL` | Verified Resend sender address |
-| `ENQUIRY_TO_EMAIL` | College inbox receiving enquiries |
 
-## Optional variable
+## Optional variables
 
 | Variable | Purpose |
 |---|---|
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Enables consent-aware GA4 analytics |
+| `GOOGLE_SITE_VERIFICATION` | Optional Search Console HTML verification code |
+| `FORMSPREE_FORM_ID` | Overrides the configured public form ID `mwlookgw` for admission/contact enquiries |
+
+Configure and verify the recipient email in Formspree. No Formspree secret API
+key is needed. Follow [FORMSPREE-SETUP.md](FORMSPREE-SETUP.md), including the
+CAPTCHA setting for this server-side integration, then redeploy. Old
+`RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL` settings are no longer
+used by the application and can be removed from this project's environment.
 
 ## Domain migration checklist
 

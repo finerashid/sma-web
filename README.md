@@ -13,7 +13,7 @@ on Vercel.
 - Legacy Academics route redirects to the BNYS curriculum; Updates remains directly accessible
 - Real SMA campus and training photographs migrated from the existing website
 - Automatic folder-driven gallery with keyboard-accessible lightbox
-- Admission/contact enquiry form with server-side validation and Resend delivery
+- Admission/contact enquiry form with server-side validation and Formspree delivery
 - Consent-aware Google Analytics 4 integration and conversion events
 - Per-page metadata, canonical URLs, Open Graph and X cards
 - `CollegeOrUniversity`, `Course` and FAQ structured data
@@ -43,14 +43,15 @@ Open `http://localhost:3000`.
 ```dotenv
 NEXT_PUBLIC_SITE_URL=https://smamedicalcollege.com
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
-RESEND_API_KEY=
-ENQUIRY_FROM_EMAIL=Admissions <admissions@smamedicalcollege.com>
-ENQUIRY_TO_EMAIL=smacollege@gmail.com
+GOOGLE_SITE_VERIFICATION=
+FORMSPREE_FORM_ID=mwlookgw
 ```
 
-`NEXT_PUBLIC_GA_MEASUREMENT_ID` is optional. The other email variables are
-required for the enquiry form to deliver submissions. Until they are set, the
-form returns a clear message directing visitors to call the college.
+`NEXT_PUBLIC_GA_MEASUREMENT_ID` and `GOOGLE_SITE_VERIFICATION` are optional.
+The site uses the public Formspree form ID `mwlookgw` by default.
+`FORMSPREE_FORM_ID` optionally overrides it with the identifier after `/f/`,
+not a secret API key or full URL. Recipient email and notification settings
+are managed in Formspree.
 
 ## Gallery system — important
 
@@ -110,16 +111,23 @@ and faculty claims against current official documents.
 ## Enquiry form
 
 `POST /api/enquiry` validates and sanitises the form, rejects a honeypot field,
-and sends the submission through the Resend HTTP API.
+and sends the submission to Formspree. Admissions and Contact share this handler;
+the `source` field and email subject distinguish them.
 
 To enable it:
 
-1. Add and verify a sending domain in Resend.
-2. Create an API key.
-3. Set `RESEND_API_KEY`, `ENQUIRY_FROM_EMAIL` and `ENQUIRY_TO_EMAIL` in Vercel.
-4. Redeploy and submit a test enquiry.
+1. Open the Formspree form for `https://formspree.io/f/mwlookgw` and verify the
+   college's recipient email.
+2. The configured form ID is included in the code for local and production use.
+3. If switching forms, set `FORMSPREE_FORM_ID` in Vercel's Production environment.
+4. Keep Formspree's interactive CAPTCHA disabled for this server-side integration.
+   The existing honeypot and Formspree's spam filtering remain in use.
+5. Redeploy and verify a test enquiry in the Formspree dashboard and recipient inbox.
 
-Never expose `RESEND_API_KEY` as a `NEXT_PUBLIC_` variable.
+No Formspree API key, account password, SMTP credentials or Resend configuration
+is needed. See `docs/FORMSPREE-SETUP.md` for the production steps and optional
+domain restrictions. No CAPTCHA widget/token exchange is implemented; enabling
+an interactive challenge requires adding that client integration first.
 
 ## Analytics
 

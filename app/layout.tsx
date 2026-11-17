@@ -38,11 +38,6 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/og.png"],
   },
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/images/sma-logo.webp",
-  },
   manifest: "/manifest.webmanifest",
 };
 

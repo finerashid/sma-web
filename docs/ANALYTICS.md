@@ -36,7 +36,8 @@ failures cannot change the form's success state.
    on browser history events”. GA4 handles initial and Next.js navigation page
    views; this site intentionally does not send a second manual `page_view`.
 3. Turn off enhanced “Form interactions” if automatic form events cause confusion.
-   Only the application's successful `generate_lead` represents a delivered enquiry.
+   Only the application's successful `generate_lead` represents an enquiry accepted
+   by the submission service; verify email delivery in Formspree separately.
 4. Mark `generate_lead` as the primary key event. It replaces the earlier
    `submit_application_enquiry` event. Do not count both as separate leads in old
    reports. Application/contact clicks are indicators of intent, not completed leads.

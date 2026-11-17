@@ -74,54 +74,69 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.ENQUIRY_TO_EMAIL;
-  const from = process.env.ENQUIRY_FROM_EMAIL;
+  // Formspree form IDs are public; an environment value can override SMA's form.
+  const formId = process.env.FORMSPREE_FORM_ID?.trim() || "mwlookgw";
 
-  if (!apiKey || !to || !from) {
-    console.error("Enquiry email environment variables are not configured.");
+  if (!formId || !/^[a-zA-Z0-9]{4,64}$/.test(formId)) {
+    console.error("FORMSPREE_FORM_ID is invalid.");
     return NextResponse.json(
       { message: "Online enquiries are temporarily unavailable. Please call the admissions office." },
       { status: 503 },
     );
   }
 
-  let emailResponse: Response;
+  let formspreeResponse: Response;
 
   try {
-    emailResponse = await fetch("https://api.resend.com/emails", {
+    const pagePath = enquiry.source === "admissions-page"
+      ? "/admissions"
+      : enquiry.source === "contact-page" ? "/contact" : "/";
+    const pageUrl = new URL(pagePath, process.env.NEXT_PUBLIC_SITE_URL || request.url).toString();
+
+    formspreeResponse = await fetch(`https://formspree.io/f/${formId}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Accept: "application/json",
         "Content-Type": "application/json",
+        Referer: pageUrl,
       },
       body: JSON.stringify({
-        from,
-        to: [to],
-        reply_to: enquiry.email || undefined,
-        subject: `New BNYS enquiry from ${enquiry.name.replace(/[\r\n]+/g, " ")}`,
-        text: [
-          `Name: ${enquiry.name}`,
-          `Phone: ${enquiry.phone}`,
-          `Email: ${enquiry.email || "Not provided"}`,
-          `Location: ${enquiry.location || "Not provided"}`,
-          `Source: ${enquiry.source}`,
-          "",
-          enquiry.message,
-        ].join("\n"),
+        name: enquiry.name,
+        phone: enquiry.phone,
+        email: enquiry.email || undefined,
+        location: enquiry.location || undefined,
+        message: enquiry.message || undefined,
+        source: enquiry.source,
+        consent: "yes",
+        page: pageUrl,
+        subject: enquiry.source === "contact-page"
+          ? "New SMA Medical College contact enquiry"
+          : "New SMA Medical College BNYS admission enquiry",
       }),
       signal: AbortSignal.timeout(10_000),
+      redirect: "error",
+      cache: "no-store",
     });
-  } catch (error) {
-    console.error("Enquiry email request failed", error);
+  } catch {
+    console.error("Formspree enquiry request failed or timed out.");
     return NextResponse.json(
       { message: "We could not send the enquiry. Please call the admissions office." },
       { status: 502 },
     );
   }
 
-  if (!emailResponse.ok) {
-    console.error("Resend rejected an enquiry email", await emailResponse.text());
+  if (formspreeResponse.status === 429) {
+    return NextResponse.json(
+      { message: "Online enquiries are busy right now. Please try again later or call the admissions office." },
+      { status: 429 },
+    );
+  }
+
+  const result = await formspreeResponse.json().catch(() => null) as { ok?: unknown } | null;
+
+  if (!formspreeResponse.ok || result?.ok !== true) {
+    // Do not log the response body: it may contain applicants' personal data.
+    console.error("Formspree did not accept an enquiry.", { status: formspreeResponse.status });
     return NextResponse.json(
       { message: "We could not send the enquiry. Please call the admissions office." },
       { status: 502 },
