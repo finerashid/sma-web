@@ -1,10 +1,11 @@
 # Formspree production setup
 
 The Admission enquiry and Contact forms use the same `/api/enquiry` handler.
-It validates name, phone, optional email and consent, checks the honeypot, and
+It validates name, phone, email and consent, checks the honeypot, and
 submits JSON to `https://formspree.io/f/<form-id>`. The browser keeps the existing
 form layout, loading state, success message and recoverable errors. Applicant
-details are not logged by the handler.
+details are not logged by the handler. Email is required for Contact enquiries
+and optional for Admission enquiries, in both the form and server validation.
 
 ## Configured endpoint
 
@@ -41,8 +42,10 @@ integration. Do not send account passwords or secret management keys.
    existing honeypot and Formspree's spam filtering still apply. If CAPTCHA is
    desired later, add the challenge/token integration before enabling it.
 5. If you use Formspree field-validation rules, require `name` and `phone` and
-   keep `email` and `message` optional to match the website. The server already
-   checks consent and sends `consent: "yes"`.
+   keep `email` optional in Formspree's shared form because Admission enquiries
+   allow it to be omitted. The website and server require email for Contact
+   enquiries. Keep `message` optional for both. The server checks consent and
+   sends `consent: "yes"`.
 6. If **Restrict to Domain** is enabled, use `smamedicalcollege.com` rather than
    only `www.smamedicalcollege.com`. The handler sends a `Referer` based on
    `NEXT_PUBLIC_SITE_URL` and the source page. Use a separate test form for preview
@@ -52,7 +55,7 @@ integration. Do not send account passwords or secret management keys.
 8. Send one test enquiry from `/admissions`, confirm it appears in Formspree,
    and confirm the recipient email arrives. Also test an enquiry with only name,
    phone and consent so the optional email field does not block submissions.
-   Check `/contact` if that form will be used.
+   On `/contact`, confirm a blank email blocks submission and a valid email works.
 
 Formspree handles notification delivery. There is no Resend fallback and no
 need to configure a sending domain for the previous Resend integration. Its
@@ -63,7 +66,7 @@ three old environment variables can be removed from this Vercel project.
 | Field | Meaning |
 | --- | --- |
 | `name`, `phone` | Required applicant contact details |
-| `email` | Optional; omitted when empty; Formspree can use it for Reply-To |
+| `email` | Required for Contact; optional for Admission and omitted when empty; used for Reply-To |
 | `message` | Optional applicant question; omitted when empty |
 | `location` | Optional field supported by the existing endpoint; not shown in the current form |
 | `consent` | `yes`, after server validation |

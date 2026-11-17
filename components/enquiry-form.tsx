@@ -9,6 +9,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export function EnquiryForm({ source = "website" }: { source?: string }) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
+  const emailRequired = source === "contact-page";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -50,8 +51,8 @@ export function EnquiryForm({ source = "website" }: { source?: string }) {
           <input name="phone" type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+() -]{8,18}" required />
         </label>
         <label>
-          Email address (optional)
-          <input name="email" type="email" autoComplete="email" maxLength={120} />
+          Email address {emailRequired ? <span aria-hidden="true">*</span> : "(optional)"}
+          <input name="email" type="email" autoComplete="email" maxLength={120} required={emailRequired} />
         </label>
       </div>
       <label>

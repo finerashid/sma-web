@@ -64,11 +64,28 @@ test("forwards a valid admission enquiry to Formspree without API credentials", 
   });
 });
 
-test("keeps email and message optional and labels contact enquiries", async () => {
-  const response = await POST(request({ ...validEnquiry, email: "", message: "", source: "contact-page" }));
+test("keeps email and message optional for admission enquiries", async () => {
+  const response = await POST(request({ ...validEnquiry, email: "", message: "" }));
   assert.equal(response.status, 200);
   const payload = JSON.parse(calls[0][1].body);
   assert.equal(payload.email, undefined);
+  assert.equal(payload.message, undefined);
+  assert.equal(payload.source, "admissions-page");
+});
+
+test("rejects missing, blank or invalid contact email before sending to Formspree", async () => {
+  for (const email of [undefined, null, "", "   ", "not-an-email"]) {
+    const response = await POST(request({ ...validEnquiry, email, source: "contact-page" }));
+    assert.equal(response.status, 422);
+  }
+  assert.equal(calls.length, 0);
+});
+
+test("forwards valid contact email and keeps the message optional", async () => {
+  const response = await POST(request({ ...validEnquiry, email: "  applicant@example.com  ", message: "", source: "contact-page" }));
+  assert.equal(response.status, 200);
+  const payload = JSON.parse(calls[0][1].body);
+  assert.equal(payload.email, "applicant@example.com");
   assert.equal(payload.message, undefined);
   assert.equal(payload.page, "https://smamedicalcollege.com/contact");
   assert.match(payload.subject, /contact enquiry/);

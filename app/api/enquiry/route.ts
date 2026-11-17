@@ -65,6 +65,7 @@ export async function POST(request: Request) {
   if (
     enquiry.name.length < 2 ||
     !isValidPhone(enquiry.phone) ||
+    (enquiry.source === "contact-page" && !enquiry.email) ||
     !isValidEmail(enquiry.email) ||
     body.consent !== "yes"
   ) {
