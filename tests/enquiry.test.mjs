@@ -58,25 +58,27 @@ test("forwards a valid admission enquiry to Formspree without API credentials", 
   assert.equal(options.redirect, "error");
   assert(options.signal instanceof AbortSignal);
   assert.deepEqual(JSON.parse(options.body), {
-    name: "Test Applicant", phone: validEnquiry.phone, email: validEnquiry.email,
+    name: "Test Applicant", phone: `+91${validEnquiry.phone}`, email: validEnquiry.email,
     message: validEnquiry.message, source: "admissions-page", consent: "yes",
     page: "https://smamedicalcollege.com/admissions", subject: "New SMA Medical College BNYS admission enquiry",
   });
 });
 
-test("keeps email and message optional for admission enquiries", async () => {
-  const response = await POST(request({ ...validEnquiry, email: "", message: "" }));
+test("keeps the message optional for admission enquiries", async () => {
+  const response = await POST(request({ ...validEnquiry, message: "" }));
   assert.equal(response.status, 200);
   const payload = JSON.parse(calls[0][1].body);
-  assert.equal(payload.email, undefined);
+  assert.equal(payload.email, validEnquiry.email);
   assert.equal(payload.message, undefined);
   assert.equal(payload.source, "admissions-page");
 });
 
-test("rejects missing, blank or invalid contact email before sending to Formspree", async () => {
-  for (const email of [undefined, null, "", "   ", "not-an-email"]) {
-    const response = await POST(request({ ...validEnquiry, email, source: "contact-page" }));
-    assert.equal(response.status, 422);
+test("requires valid email for every enquiry source before sending to Formspree", async () => {
+  for (const source of ["admissions-page", "contact-page", "website", undefined]) {
+    for (const email of [undefined, null, "", "   ", "not-an-email"]) {
+      const response = await POST(request({ ...validEnquiry, email, source }));
+      assert.equal(response.status, 422);
+    }
   }
   assert.equal(calls.length, 0);
 });
@@ -91,7 +93,24 @@ test("forwards valid contact email and keeps the message optional", async () => 
   assert.match(payload.subject, /contact enquiry/);
 });
 
-test("requires valid name, phone, optional email and affirmative consent before forwarding", async () => {
+test("normalizes national and +91 mobile numbers without duplicating the country code", async () => {
+  for (const phone of ["9876543210", "+919876543210", "  +919876543210  "]) {
+    const response = await POST(request({ ...validEnquiry, phone }));
+    assert.equal(response.status, 200);
+    assert.equal(JSON.parse(calls.at(-1)[1].body).phone, "+919876543210");
+  }
+});
+
+test("both forms require exactly ten digits after the Indian country code", async () => {
+  for (const source of ["admissions-page", "contact-page"]) {
+    for (const phone of [undefined, null, "", "   ", "987654321", "98765432101", "+91", "+19876543210", "+9198765432101", "98765abcde", "----------"]) {
+      assert.equal((await POST(request({ ...validEnquiry, source, phone }))).status, 422);
+    }
+  }
+  assert.equal(calls.length, 0);
+});
+
+test("requires valid name, phone, email and affirmative consent before forwarding", async () => {
   for (const changes of [{ name: "A" }, { phone: "invalid" }, { email: "not-an-email" }, { consent: "no" }]) {
     assert.equal((await POST(request({ ...validEnquiry, ...changes }))).status, 422);
   }

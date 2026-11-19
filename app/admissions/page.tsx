@@ -34,7 +34,7 @@ export default function AdmissionsPage() {
   return <>
     <section className="section admission-intro"><div className="container form-section-grid">
       <div><Breadcrumbs name="BNYS admissions" path="/admissions" /><p className="eyebrow">Admissions {siteConfig.admissionsYear}</p><h1>BNYS admission in Madhya Pradesh.</h1><p className="page-lead">Start your conversation with SMA Medical College, Bhopal. Our admissions team can help with BNYS eligibility, fees, counselling and the next steps.</p>
-      <ol className="admission-steps"><li><strong>Send an enquiry</strong><span>Leave your name and phone number.</span></li><li><strong>Get personal guidance</strong><span>Discuss current requirements and request the official admission information.</span></li><li><strong>Plan your next step</strong><span>Arrange a campus visit and prepare your application.</span></li></ol>
+      <ol className="admission-steps"><li><strong>Send an enquiry</strong><span>Leave your name, mobile number and email address.</span></li><li><strong>Get personal guidance</strong><span>Discuss current requirements and request the official admission information.</span></li><li><strong>Plan your next step</strong><span>Arrange a campus visit and prepare your application.</span></li></ol>
       <div className="direct-contact"><strong>Prefer to speak to us?</strong><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></div></div>
       <div className="admission-form-card" id="enquiry"><h2>Admission enquiry</h2><p>We’ll contact you using the details below.</p><EnquiryForm source="admissions-page" /></div>
     </div></section>

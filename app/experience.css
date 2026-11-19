@@ -127,6 +127,12 @@
 .admission-intro { background: radial-gradient(ellipse at top left,#e2ebd7,transparent 55%),var(--sma-cream); }
 .admission-form-card { border-top: 4px solid #7e9d5b; box-shadow: 0 20px 55px #123c350a; }
 .contact-cards article { border-top: 3px solid #96ae76; }
+.phone-input { display: flex; align-items: center; min-width: 0; border: 1px solid #bdcbc3; border-radius: 8px; background: var(--ivory-50); overflow: hidden; }
+.phone-input:hover { border-color: #8eaa9a; }
+.phone-input:focus-within { border-color: var(--green-700); outline: 3px solid rgba(35,122,87,.14); }
+.phone-country-code { flex: none; align-self: stretch; display: flex; align-items: center; padding-inline: .85rem; border-right: 1px solid #bdcbc3; color: var(--ink-700); }
+.enquiry-form .phone-input input { flex: 1; min-width: 0; border: 0; border-radius: 0; background: transparent; }
+.enquiry-form .phone-input input:focus { outline: none; }
 .cta-section { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(115deg,#0c332b,#245b43); padding-block: 3.25rem; }
 .cta-inner { position: relative; z-index: 1; }
 .cta-inner h2 { max-width: 570px; font-size: clamp(2.5rem,4vw,3.6rem); }

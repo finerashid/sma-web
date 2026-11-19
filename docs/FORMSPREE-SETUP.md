@@ -4,8 +4,11 @@ The Admission enquiry and Contact forms use the same `/api/enquiry` handler.
 It validates name, phone, email and consent, checks the honeypot, and
 submits JSON to `https://formspree.io/f/<form-id>`. The browser keeps the existing
 form layout, loading state, success message and recoverable errors. Applicant
-details are not logged by the handler. Email is required for Contact enquiries
-and optional for Admission enquiries, in both the form and server validation.
+details are not logged by the handler. Email is required on every enquiry form,
+including Contact and Admission, in both the form and server validation.
+Both forms require a 10-digit mobile number and display a fixed `+91` prefix.
+The server validates the number and sends it to Formspree as `+91` followed by
+the ten digits, so email notifications include the country code.
 
 ## Configured endpoint
 
@@ -41,10 +44,9 @@ integration. Do not send account passwords or secret management keys.
    exchange and cannot complete Formspree's hosted verification screen. The
    existing honeypot and Formspree's spam filtering still apply. If CAPTCHA is
    desired later, add the challenge/token integration before enabling it.
-5. If you use Formspree field-validation rules, require `name` and `phone` and
-   keep `email` optional in Formspree's shared form because Admission enquiries
-   allow it to be omitted. The website and server require email for Contact
-   enquiries. Keep `message` optional for both. The server checks consent and
+5. If you use Formspree field-validation rules, require `name`, `phone` and
+   `email` to match all website enquiry forms. Keep `message` optional.
+   The server checks consent and
    sends `consent: "yes"`.
 6. If **Restrict to Domain** is enabled, use `smamedicalcollege.com` rather than
    only `www.smamedicalcollege.com`. The handler sends a `Referer` based on
@@ -53,9 +55,9 @@ integration. Do not send account passwords or secret management keys.
 7. Redeploy. Local development uses the same default; if overriding the form ID,
    set it in `.env.local` and restart `npm run dev`. Do not commit `.env.local`.
 8. Send one test enquiry from `/admissions`, confirm it appears in Formspree,
-   and confirm the recipient email arrives. Also test an enquiry with only name,
-   phone and consent so the optional email field does not block submissions.
-   On `/contact`, confirm a blank email blocks submission and a valid email works.
+   and confirm the recipient email arrives. On both `/admissions` and `/contact`,
+   confirm missing email or mobile blocks submission, and valid name, email,
+   mobile and consent work without a message.
 
 Formspree handles notification delivery. There is no Resend fallback and no
 need to configure a sending domain for the previous Resend integration. Its
@@ -65,8 +67,9 @@ three old environment variables can be removed from this Vercel project.
 
 | Field | Meaning |
 | --- | --- |
-| `name`, `phone` | Required applicant contact details |
-| `email` | Required for Contact; optional for Admission and omitted when empty; used for Reply-To |
+| `name` | Required applicant name |
+| `phone` | Required mobile number, normalized to `+91` followed by ten digits |
+| `email` | Required on all enquiry forms; used for Reply-To |
 | `message` | Optional applicant question; omitted when empty |
 | `location` | Optional field supported by the existing endpoint; not shown in the current form |
 | `consent` | `yes`, after server validation |

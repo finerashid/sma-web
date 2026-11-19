@@ -9,7 +9,6 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export function EnquiryForm({ source = "website" }: { source?: string }) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
-  const emailRequired = source === "contact-page";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,7 +22,7 @@ export function EnquiryForm({ source = "website" }: { source?: string }) {
       const response = await fetch("/api/enquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, source }),
+        body: JSON.stringify({ ...payload, phone: `+91${payload.phone}`, source }),
       });
       const result = (await response.json()) as { message?: string };
 
@@ -43,16 +42,19 @@ export function EnquiryForm({ source = "website" }: { source?: string }) {
     <form className="enquiry-form" onSubmit={handleSubmit} aria-busy={status === "submitting"}>
       <div className="form-grid">
         <label>
-          Full name <span aria-hidden="true">*</span>
+          <span>Full name <span aria-hidden="true">*</span></span>
           <input name="name" type="text" autoComplete="name" minLength={2} maxLength={80} required />
         </label>
         <label>
-          Mobile number <span aria-hidden="true">*</span>
-          <input name="phone" type="tel" inputMode="tel" autoComplete="tel" pattern="[0-9+() -]{8,18}" required />
+          <span>Mobile number <span aria-hidden="true">*</span></span>
+          <span className="phone-input">
+            <span className="phone-country-code">+91</span>
+            <input name="phone" type="tel" inputMode="numeric" autoComplete="tel-national" pattern="[0-9]{10}" placeholder="10-digit number" title="Enter your 10-digit mobile number. The +91 country code is already included." required />
+          </span>
         </label>
         <label>
-          Email address {emailRequired ? <span aria-hidden="true">*</span> : "(optional)"}
-          <input name="email" type="email" autoComplete="email" maxLength={120} required={emailRequired} />
+          <span>Email address <span aria-hidden="true">*</span></span>
+          <input name="email" type="email" autoComplete="email" maxLength={120} required />
         </label>
       </div>
       <label>

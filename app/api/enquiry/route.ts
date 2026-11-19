@@ -20,11 +20,14 @@ function clean(value: unknown, maxLength: number) {
 }
 
 function isValidEmail(email: string) {
-  return !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function isValidPhone(phone: string) {
-  return /^[0-9+() -]{8,18}$/.test(phone);
+function normalizeMobile(value: unknown) {
+  if (typeof value !== "string") return "";
+  const phone = value.trim();
+  if (!/^(?:\+91)?[0-9]{10}$/.test(phone)) return "";
+  return phone.startsWith("+91") ? phone : `+91${phone}`;
 }
 
 export async function POST(request: Request) {
@@ -55,7 +58,7 @@ export async function POST(request: Request) {
 
   const enquiry = {
     name: clean(body.name, 80),
-    phone: clean(body.phone, 18),
+    phone: normalizeMobile(body.phone),
     email: clean(body.email, 120),
     location: clean(body.location, 100),
     message: clean(body.message, 1200),
@@ -64,8 +67,7 @@ export async function POST(request: Request) {
 
   if (
     enquiry.name.length < 2 ||
-    !isValidPhone(enquiry.phone) ||
-    (enquiry.source === "contact-page" && !enquiry.email) ||
+    !enquiry.phone ||
     !isValidEmail(enquiry.email) ||
     body.consent !== "yes"
   ) {
@@ -104,7 +106,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         name: enquiry.name,
         phone: enquiry.phone,
-        email: enquiry.email || undefined,
+        email: enquiry.email,
         location: enquiry.location || undefined,
         message: enquiry.message || undefined,
         source: enquiry.source,
